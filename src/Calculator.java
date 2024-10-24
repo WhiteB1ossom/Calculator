@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  * 추가로, 백스페이스, 초기화 기능도 지원합니다.
  * 
  * @author Blossom
- * @version 1.4.0
+ * @version 1.3.0
  * @since 2024-10-20
  */
 public class Calculator extends JFrame implements ActionListener {
