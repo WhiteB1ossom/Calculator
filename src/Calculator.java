@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,7 +16,7 @@ import javax.swing.JTextField;
  * 추가로, 백스페이스, 초기화 기능도 지원합니다.
  * 
  * @author Blossom
- * @version 1.3.0
+ * @version 1.4.0
  * @since 2024-10-20
  */
 public class Calculator extends JFrame implements ActionListener {
@@ -52,7 +54,7 @@ public class Calculator extends JFrame implements ActionListener {
      */
     private void CalculatorGUI() {
         this.setTitle("계산기");
-        this.setSize(520, 720);
+        this.setSize(620, 820);
 
         // 로그와 숫자를 표시할 영역 설정
         setupDisplayFields();
@@ -169,6 +171,7 @@ public class Calculator extends JFrame implements ActionListener {
      * 
      * @param op 사용자가 선택한 연산자
      * @see #handleOperator(String)
+     * @see <a href="https://comain.tistory.com/14">계산기 기호 작동 참고 외부링크</a>
      */
     private void handleOperator(String op) {
         if (!startNewNumber) {
@@ -209,6 +212,7 @@ public class Calculator extends JFrame implements ActionListener {
      * 백스페이스 기능을 처리하는 메서드입니다.
      * 마지막에 입력한 문자를 삭제합니다.
      * @see #BackSpace
+     * @see <a href="https://0rcticfox.tistory.com/entry/822-%EC%9E%90%EB%B0%94Java-GUI-%ED%99%9C%EC%9A%A9-JPanel-%ED%99%9C%EC%9A%A9-%EA%B3%84%EC%82%B0%EA%B8%B0-%EC%98%A4%EB%AA%A9-%EA%B2%8C%EC%9E%84">BackSpace 및 다른 변수 이름 참고 외부링크</a>
      */
     private void BackSpace() {
         String currentText = NumSpace.getText();
@@ -222,26 +226,22 @@ public class Calculator extends JFrame implements ActionListener {
     /**
      * 현재 연산을 수행하고 결과를 NumSpace에 표시하는 메서드입니다.
      * @see #calculate
-     * @see * @see <a href="https://codegym.cc/ko/groups/posts/ko.622.jaba-floor-meseodeu">외부 링크 설명</a>
+     * @see <a href="https://developer-hm.tistory.com/229">BigDecimal 참고 외부링크</a>
      */
     private void calculate() {
-        num2 = Double.parseDouble(NumSpace.getText());
+        BigDecimal BDnum1 = new BigDecimal(Double.toString(num1));
+        BigDecimal BDnum2 = new BigDecimal(NumSpace.getText());
 
-        switch (operator) {
-            case "+": num1 += num2; break;
-            case "-": num1 -= num2; break;
-            case "x": num1 *= num2; break;
-            case "÷": num1 /= num2; break;
-            default: num1 = num2; break;
-        }
-
-        if (num1 == Math.floor(num1)) {
-            NumSpace.setText("" + (int) num1);
-        } else {
-            NumSpace.setText("" + num1);
-        }
-
-        num1 = Double.parseDouble(NumSpace.getText());
+        BigDecimal result = switch (operator) {
+            case "+" -> BDnum1.add(BDnum2);
+            case "-" -> BDnum1.subtract(BDnum2);
+            case "x" -> BDnum1.multiply(BDnum2);
+            case "÷" -> BDnum1.divide(BDnum2, 10, BigDecimal.ROUND_HALF_UP);  // 10자리 소수점까지 표시
+            default -> BDnum2;
+        };
+        
+        num1 = result.doubleValue();  // num1에 결과값 저장
+        NumSpace.setText(result.stripTrailingZeros().toPlainString());
     }
 
     /**
@@ -250,7 +250,7 @@ public class Calculator extends JFrame implements ActionListener {
      * @param command 입력된 문자열
      * @return 숫자 또는 소수점일 경우 true, 아니면 false
      * @see #isNumber
-     * @see <a href="https://developer-talk.tistory.com/768"</a>
+     * @see <a href="https://developer-talk.tistory.com/768">문자열 판별 참고 외부링크</a>
      */
     private boolean isNumer(String command) {
         return (command.charAt(0) >= '0' && command.charAt(0) <= '9') || command.equals(".");
