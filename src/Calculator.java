@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 
-import javax.swing.JButton;
+import javax.swing.JButton;	
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -17,18 +17,17 @@ import javax.swing.JTextField;
  * 추가로, 백스페이스, 초기화 기능도 지원합니다.
  * 
  * @author Blossom
- * @version 1.4.1
+ * @version 1.4.2
  * @since 2024-10-20
  */
 public class Calculator extends JFrame implements ActionListener {
 
     String[] Btn = {
-        "%", "CE", "C", "←",
-        "¹/x", "x²", "²√x", "÷",
+    	"Blossom", "C", "←", "÷",
         "7", "8", "9", "x",
         "4", "5", "6", "-",
         "1", "2", "3", "+",
-        "+/-", "0", ".", "="
+        "　", "0", ".", "="
     };
 
     double num1 = 0;
@@ -56,14 +55,14 @@ public class Calculator extends JFrame implements ActionListener {
      */
     private void CalculatorGUI() {
         this.setTitle("계산기");
-        this.setSize(520, 720);
+        this.setSize(420, 620);
 
         // 로그와 숫자를 표시할 영역 설정
         setupDisplayFields();
 
         // 버튼 패널 설정
         BtnPanel = new JPanel();
-        BtnPanel.setLayout(new GridLayout(6, 4, 2, 2));
+        BtnPanel.setLayout(new GridLayout(5, 4, 2, 2));
         setupButtons();
 
         // 컴포넌트 추가
@@ -113,12 +112,15 @@ public class Calculator extends JFrame implements ActionListener {
             b[index].addActionListener(this);
             BtnPanel.add(b[index]);
             
-            if(index <= 7 || index % 4 == 3) {
+            if(index <= 3 || index % 4 == 3) {
             	b[index].setBackground(new Color(243,243,243));
             }
-            if (index == 23) {
+            if (index == 19) {
             	b[index].setBackground(new Color(0,90,158));
             	b[index].setForeground(Color.white);
+            }
+            if (index == 0) {
+            	b[index].setFont(font.deriveFont(15f));
             }
             index++;
         }
