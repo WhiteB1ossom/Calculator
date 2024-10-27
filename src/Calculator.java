@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +17,7 @@ import javax.swing.JTextField;
  * 추가로, 백스페이스, 초기화 기능도 지원합니다.
  * 
  * @author Blossom
- * @version 1.4.0
+ * @version 1.4.1
  * @since 2024-10-20
  */
 public class Calculator extends JFrame implements ActionListener {
@@ -40,6 +41,7 @@ public class Calculator extends JFrame implements ActionListener {
 
     JPanel BtnPanel, NumPanel;
     JTextField LogSpace, NumSpace;
+    Font font;
 
     /**
      * Calculator 클래스의 생성자입니다.
@@ -54,7 +56,7 @@ public class Calculator extends JFrame implements ActionListener {
      */
     private void CalculatorGUI() {
         this.setTitle("계산기");
-        this.setSize(620, 820);
+        this.setSize(520, 720);
 
         // 로그와 숫자를 표시할 영역 설정
         setupDisplayFields();
@@ -76,17 +78,19 @@ public class Calculator extends JFrame implements ActionListener {
      * 숫자 및 로그 필드를 초기화하는 메서드입니다.
      */
     private void setupDisplayFields() {
+    	font = new Font("Serif", Font.BOLD, 0);
+    	
         LogSpace = new JTextField("");
         LogSpace.setEditable(false);
         LogSpace.setBackground(Color.lightGray);
         LogSpace.setHorizontalAlignment(JTextField.RIGHT);
-        LogSpace.setFont(LogSpace.getFont().deriveFont(10f));
+        LogSpace.setFont(font.deriveFont(20f));
 
         NumSpace = new JTextField("0");
         NumSpace.setEditable(false);
         NumSpace.setBackground(Color.white);
         NumSpace.setHorizontalAlignment(JTextField.RIGHT);
-        NumSpace.setFont(NumSpace.getFont().deriveFont(70f));
+        NumSpace.setFont(font.deriveFont(70f));
 
         NumPanel = new JPanel();
         NumPanel.setLayout(new BorderLayout());
@@ -100,11 +104,22 @@ public class Calculator extends JFrame implements ActionListener {
      */
     private void setupButtons() {
         for (String text : Btn) {
+        	
+        	font = new Font("Serif", Font.BOLD, 30);
+        	
             b[index] = new JButton(text);
             b[index].setBackground(Color.white);
-            b[index].setFont(b[index].getFont().deriveFont(20f));
+            b[index].setFont(font);
             b[index].addActionListener(this);
             BtnPanel.add(b[index]);
+            
+            if(index <= 7 || index % 4 == 3) {
+            	b[index].setBackground(new Color(243,243,243));
+            }
+            if (index == 23) {
+            	b[index].setBackground(new Color(0,90,158));
+            	b[index].setForeground(Color.white);
+            }
             index++;
         }
     }
