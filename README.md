@@ -74,6 +74,7 @@ Java의 GUI 라이브러리를 활용하여 구현한 사칙연산 계산기 프
 - [BackSpace 및 기타 변수 이름 참고](https://0rcticfox.tistory.com/entry/822-%EC%9E%90%EB%B0%94Java-GUI-%ED%99%9C%EC%9A%A9-JPanel-%ED%99%9C%EC%9A%A9-%EA%B3%84%EC%82%B0%EA%B8%B0-%EC%98%A4%EB%AA%A9-%EA%B2%8C%EC%9E%84)
 - [계산기 기호 작동 방식 참고](https://comain.tistory.com/14)
 - [BigDecimal 참고 자료](https://developer-hm.tistory.com/229)
+- [README.md 참고 자료](https://12716.tistory.com/entry/Github-GIthub%EC%97%90%EC%84%9C-READMEmd-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0)
 
 ---
 
