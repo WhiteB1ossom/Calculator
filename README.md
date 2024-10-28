@@ -22,45 +22,54 @@ Backspace기능(←)과 초기화 기능(C)을 탑재하고 있습니다.
 
 다음과 같은 Java awt의 기능들을 사용하였습니다.
 
+
 BorderLayout
 
 Swing 기능인 Panel의 배치를 적절히 하는데 사용
+
 
 Color
 
 글자 숫자 밑 버튼의 Background의 색상 변경시 사용
 
+
 Font
 
 글자 폰트 변경시 사용
+
 
 GridLayout
 
 계산기 모양의 격자 무늬를 생성시 사용
 
-ActionEvent
 
-ActionListener
+ActionEvent, ActionListener
 
 버튼을 눌렀을 때 생성되는 이벤트 처리에 사용
+
 
 BigDecimal
 
 부동소수점 처리에 사용
 
+
 다음과 같은 Java swing 기능들을 사용하였습니다.
+
 
 JButton
 
 계산 기능이 들어갈 버튼 생성시 사용
 
+
 JFrame
 
 GUI창을 생성시에 사용
 
+
 JPanel
 
 기능별로 적절한 곳에 배치하기 위해 사용
+
 
 JTextField
 
