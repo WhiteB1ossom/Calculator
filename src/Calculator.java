@@ -233,10 +233,17 @@ public class Calculator extends JFrame implements ActionListener {
      */
     private void BackSpace() {
         String currentText = NumSpace.getText();
+        String LogText = LogSpace.getText();
         if (currentText.length() > 1) {
             NumSpace.setText(currentText.substring(0, currentText.length() - 1));
         } else {
             NumSpace.setText("0");
+            startNewNumber = true;
+        }
+        if (LogText.length() > 1) {
+            LogSpace.setText(LogText.substring(0, LogText.length() - 1));
+        } else {
+            LogSpace.setText("");
         }
     }
 
